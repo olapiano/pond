@@ -1,0 +1,25 @@
+var hälsa = damage();
+var hastighet = 100;
+var maxSteg = 100;
+var steg = 0;
+var riktning = 0;
+
+while(true)
+{
+  if(hälsa != damage())
+  {
+    swim(riktning, hastighet);
+    steg++;
+    if(steg > maxSteg)
+    {
+      steg = 0;
+      hälsa = damage();
+      stop();
+      riktning = Math.random() * 360;
+    }
+  }
+  if(getX > 90) direction = Math.random() * 30 + 165;
+  if(getX < 10) direction = Math.random() * 30 + 345;
+  if(getY > 90) direction = Math.random() * 30 + 75;
+  if(getX > 10) direction = Math.random() * 30 + 255;
+}
