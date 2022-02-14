@@ -5,7 +5,8 @@ var steg = 0;
 var riktning = 0;
 var titta = 0; 
 var avstånd = 0;
-
+var kanonRiktning = true;
+var found = 0;
 
 while(true)
 {
@@ -22,10 +23,26 @@ function skanna() {
   if(avstånd <= 70)
   {
     cannon(titta, scan(titta));
+    kanonRiktning = !kanonRiktning;
+    found = 20;
   }
   else 
   {
-    titta = titta + 3;
+    if(found > 0) {
+      kanonRiktning = !kanonRiktning;
+      found--;
+    }
+    else {
+      found = 0;
+    }
+    if(kanonRiktning)
+    {
+      titta = titta + 2;
+    }
+    else
+    {
+      titta = titta - 2;
+    }
   }
 }
 
@@ -34,6 +51,7 @@ function simma()
   while(steg < maxSteg)
   {
     swim(riktning, hastighet);
+    skanna();
     steg++;
     if(getX() > 90) riktning = Math.random() * 30 + 165;
     if(getX() < 10) riktning = Math.random() * 30 + 345;
