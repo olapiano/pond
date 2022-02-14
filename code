@@ -1,13 +1,32 @@
-var hälsa = 0;
+var hälsa = 1;
 var hastighet = 100;
-var maxSteg = 100;
+var maxSteg = 75;
 var steg = 0;
 var riktning = 0;
+var titta = 0; 
+var avstånd = 0;
+
 
 while(true)
 {
-  simma();
+  if(hälsa != damage())
+    simma();
+    
+  skanna();
   
+}
+
+function skanna() {
+  
+  avstånd = scan(titta, 2);
+  if(avstånd <= 70)
+  {
+    cannon(titta, scan(titta));
+  }
+  else 
+  {
+    titta = titta + 3;
+  }
 }
 
 function simma() 
@@ -16,12 +35,13 @@ function simma()
   {
     swim(riktning, hastighet);
     steg++;
-    if(getX() > 80) riktning = Math.random() * 30 + 165;
-    if(getX() < 20) cannon(90, 50);
-    if(getY() > 80) cannon(90, 50);
-    if(getX() > 20) cannon(90, 50);
+    if(getX() > 90) riktning = Math.random() * 30 + 165;
+    if(getX() < 10) riktning = Math.random() * 30 + 345;
+    if(getY() > 90) riktning = Math.random() * 30 + 255;
+    if(getY() < 10) riktning = Math.random() * 30 + 75;
   }
   steg = 0;
   riktning = Math.random() * 360;
+  hälsa = damage();
   stop();
 }
